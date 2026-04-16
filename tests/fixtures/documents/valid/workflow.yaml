@@ -1,0 +1,20 @@
+workflow_id: "deploy-prod-v2"
+schema_version: "2.1.0"
+name: "Deploy to Production"
+description: "Production deployment pipeline"
+tags:
+  - "deployment"
+  - "production"
+steps:
+  - shell:
+      command: "echo 'Starting deployment'"
+      timeout_secs: 30
+  - http:
+      url: "https://api.example.com/health"
+      method: "GET"
+      expected_status: 200
+  - docker:
+      image: "deploy-bot"
+      tag: "latest"
+      command: "./deploy.sh"
+max_parallel_steps: 3

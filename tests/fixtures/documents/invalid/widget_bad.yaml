@@ -1,0 +1,6 @@
+name: my-widget
+version: "not-a-semver"
+retries:
+  max_attempts: 3
+  backoff: invalid_strategy
+unknown_field: oops

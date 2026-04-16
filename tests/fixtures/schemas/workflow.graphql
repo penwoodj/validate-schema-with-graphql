@@ -1,0 +1,65 @@
+scalar SemVer @pattern(regex: "^[0-9]+\\.[0-9]+\\.[0-9]+$")
+scalar CronExpression @pattern(regex: "^(@(annually|yearly|monthly|weekly|daily|hourly))|((((\\d+,)+\\d+|(\\d+(\\/|-)\\d+)|\\*)\\s?){5})$")
+
+enum StepType {
+  shell
+  http
+  docker
+  workflow
+}
+
+enum BackoffStrategy {
+  exponential
+  linear
+  fixed
+}
+
+input RetryPolicy @closed {
+  max_attempts: Int
+  initial_delay_secs: Int
+  backoff: BackoffStrategy
+}
+
+input ShellStep @closed {
+  command: String!
+  working_dir: String
+  environment: [String!]
+  timeout_secs: Int
+  retries: RetryPolicy
+}
+
+input HttpStep @closed {
+  url: String!
+  method: String
+  headers: [String!]
+  body: String
+  expected_status: Int
+  timeout_secs: Int
+  retries: RetryPolicy
+}
+
+input DockerStep @closed {
+  image: String!
+  tag: String
+  command: String
+  environment: [String!]
+  timeout_secs: Int
+  retries: RetryPolicy
+}
+
+input WorkflowStep @oneOf @closed {
+  shell: ShellStep
+  http: HttpStep
+  docker: DockerStep
+}
+
+input Workflow @root @closed {
+  workflow_id: String!
+  schema_version: SemVer!
+  name: String!
+  description: String
+  tags: [String!]
+  steps: [WorkflowStep!]!
+  schedule: CronExpression
+  max_parallel_steps: Int
+}

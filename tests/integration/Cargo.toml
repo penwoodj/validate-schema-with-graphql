@@ -1,0 +1,13 @@
+[package]
+name = "graphql-ish-schema-validator-tests"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+graphql-ish-schema-validator-ir = { path = "../../crates/ir" }
+graphql-ish-schema-validator-parser = { path = "../../crates/sdl-parser" }
+graphql-ish-schema-validator-compiler = { path = "../../crates/compiler" }
+graphql-ish-schema-validator-validator = { path = "../../crates/validator" }
+graphql-ish-schema-validator-diagnostics = { path = "../../crates/diagnostics" }
+serde_json = { workspace = true }

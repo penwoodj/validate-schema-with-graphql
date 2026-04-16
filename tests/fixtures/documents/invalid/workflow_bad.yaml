@@ -1,0 +1,11 @@
+workflow_id: "bad-workflow"
+schema_version: "not-a-semver"
+name: "Bad Workflow"
+steps:
+  - shell:
+      command: "echo hello"
+      unknown_field: "should fail in strict mode"
+  - http:
+      url: "https://api.example.com"
+      method: 12345
+schedule: "invalid cron"

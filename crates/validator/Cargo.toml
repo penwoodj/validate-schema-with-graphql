@@ -1,0 +1,25 @@
+[package]
+name = "graphql-ish-schema-validator-validator"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "IR-based YAML/JSON document validation"
+
+[dependencies]
+graphql-ish-schema-validator-ir = { path = "../ir" }
+graphql-ish-schema-validator-diagnostics = { path = "../diagnostics" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+indexmap = { workspace = true }
+thiserror = { workspace = true }
+serde-saphyr = { workspace = true, optional = true }
+regex = { workspace = true }
+
+[features]
+default = ["yaml"]
+yaml = ["serde-saphyr"]
+
+[dev-dependencies]
+serde-saphyr = { workspace = true }
+insta = { workspace = true }
+proptest = { workspace = true }

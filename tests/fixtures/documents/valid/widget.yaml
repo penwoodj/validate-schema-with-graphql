@@ -1,0 +1,9 @@
+name: my-widget
+version: "1.0.0"
+retries:
+  max_attempts: 3
+  initial_delay_secs: 5
+  backoff: exponential
+tags:
+  - production
+  - stable

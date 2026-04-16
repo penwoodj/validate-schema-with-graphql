@@ -1,0 +1,25 @@
+[package]
+name = "graphql-ish-schema-validator"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Validate YAML/JSON documents against GraphQL SDL schemas"
+
+[lib]
+name = "graphql_ish_schema_validator"
+path = "src/lib.rs"
+
+[dependencies]
+graphql-ish-schema-validator-ir = { path = "../ir" }
+graphql-ish-schema-validator-parser = { path = "../sdl-parser" }
+graphql-ish-schema-validator-compiler = { path = "../compiler" }
+graphql-ish-schema-validator-validator = { path = "../validator" }
+graphql-ish-schema-validator-diagnostics = { path = "../diagnostics" }
+tracing = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+
+[features]
+default = ["yaml"]
+yaml = ["graphql-ish-schema-validator-validator/yaml"]

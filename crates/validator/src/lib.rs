@@ -1,13 +1,13 @@
 //! graphql-ish-schema-validator-validator: IR-based YAML/JSON document validation
 
-use graphql_ish_schema_validator_diagnostics::{
-    ErrorCode, ValidationError, ValidationMode, ValidationResult,
-};
-use graphql_ish_schema_validator_ir::{
-    AdditionalPolicy, JsonPointer, ScalarKind, Schema, SchemaBundle,
-};
 use indexmap::IndexMap;
 use serde::{Deserialize, Serialize};
+use validate_schema_with_graphql_diagnostics::{
+    ErrorCode, ValidationError, ValidationMode, ValidationResult,
+};
+use validate_schema_with_graphql_ir::{
+    AdditionalPolicy, JsonPointer, ScalarKind, Schema, SchemaBundle,
+};
 
 /// Canonical value model — source-agnostic representation of YAML/JSON.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
@@ -68,7 +68,7 @@ pub fn parse_yaml(input: &str) -> Result<Value, String> {
 /// Parse YAML string with configurable duplicate key policy.
 #[cfg(feature = "yaml")]
 pub fn parse_yaml_with_mode(input: &str, mode: ValidationMode) -> Result<Value, String> {
-    use graphql_ish_schema_validator_diagnostics::ValidationMode;
+    use validate_schema_with_graphql_diagnostics::ValidationMode;
 
     let opts = serde_saphyr::options! {
         duplicate_keys: match mode {
@@ -562,7 +562,7 @@ impl<'a> Validator<'a> {
 
     fn validate_oneof(
         &self,
-        variants: &[graphql_ish_schema_validator_ir::OneOfVariant],
+        variants: &[validate_schema_with_graphql_ir::OneOfVariant],
         val: &Value,
         ctx: &mut ValidationContext,
     ) {
@@ -706,7 +706,7 @@ struct ValidationContext {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use graphql_ish_schema_validator_ir::{AdditionalPolicy, Schema, SchemaBundle};
+    use validate_schema_with_graphql_ir::{AdditionalPolicy, Schema, SchemaBundle};
 
     fn simple_object_schema() -> SchemaBundle {
         let mut bundle = SchemaBundle::new();

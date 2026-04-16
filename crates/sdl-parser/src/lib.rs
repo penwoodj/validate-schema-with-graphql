@@ -1,8 +1,8 @@
 //! graphql-ish-schema-validator-parser: GraphQL SDL parser using apollo-parser with CST walking
 
 use apollo_parser::{cst, cst::CstNode, Parser as ApolloParser};
-use graphql_ish_schema_validator_diagnostics::SdlError;
 use std::collections::HashSet;
+use validate_schema_with_graphql_diagnostics::SdlError;
 
 /// Result of parsing SDL source.
 #[derive(Debug)]

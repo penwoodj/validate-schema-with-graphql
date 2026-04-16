@@ -1,9 +1,9 @@
 [package]
-name = "graphql-ish-schema-validator-diagnostics"
+name = "validate-schema-with-graphql-diagnostics"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
-description = "Error types and diagnostic reporting for graphql-ish-schema-validator"
+description = "Error types and diagnostic reporting for validate-schema-with-graphql"
 
 [dependencies]
 thiserror = { workspace = true }

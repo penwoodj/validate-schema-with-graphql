@@ -6,7 +6,7 @@ members = [
     "crates/validator",
     "crates/diagnostics",
     "crates/cli",
-    "crates/graphql-ish-schema-validator",
+    "crates/validate-schema-with-graphql",
     "tests/integration",
 ]
 resolver = "2"

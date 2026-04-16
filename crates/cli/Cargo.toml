@@ -1,18 +1,18 @@
 [package]
-name = "graphql-ish-schema-validator-cli"
+name = "validate-schema-with-graphql-cli"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
-description = "CLI binary for graphql-ish-schema-validator"
+description = "CLI binary for validate-schema-with-graphql"
 
 [[bin]]
-name = "graphql-ish-schema-validator"
+name = "validate-schema-with-graphql"
 path = "src/main.rs"
 
 [dependencies]
-graphql-ish-schema-validator = { path = "../graphql-ish-schema-validator" }
-graphql-ish-schema-validator-parser = { path = "../sdl-parser" }
-graphql-ish-schema-validator-compiler = { path = "../compiler" }
+validate-schema-with-graphql = { path = "../validate-schema-with-graphql" }
+validate-schema-with-graphql-parser = { path = "../sdl-parser" }
+validate-schema-with-graphql-compiler = { path = "../compiler" }
 clap = { workspace = true }
 serde_json = { workspace = true }
 miette = { workspace = true }
@@ -21,4 +21,4 @@ tracing-subscriber = { workspace = true }
 
 [features]
 default = ["yaml"]
-yaml = ["graphql-ish-schema-validator/yaml"]
+yaml = ["validate-schema-with-graphql/yaml"]

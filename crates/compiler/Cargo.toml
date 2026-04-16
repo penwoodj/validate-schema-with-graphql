@@ -1,14 +1,14 @@
 [package]
-name = "graphql-ish-schema-validator-compiler"
+name = "validate-schema-with-graphql-compiler"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
 description = "SDL AST to IR lowering compiler"
 
 [dependencies]
-graphql-ish-schema-validator-ir = { path = "../ir" }
-graphql-ish-schema-validator-parser = { path = "../sdl-parser" }
-graphql-ish-schema-validator-diagnostics = { path = "../diagnostics" }
+validate-schema-with-graphql-ir = { path = "../ir" }
+validate-schema-with-graphql-parser = { path = "../sdl-parser" }
+validate-schema-with-graphql-diagnostics = { path = "../diagnostics" }
 thiserror = { workspace = true }
 indexmap = { workspace = true }
 regex = { workspace = true }

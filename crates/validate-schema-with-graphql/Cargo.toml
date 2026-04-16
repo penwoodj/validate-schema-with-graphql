@@ -1,0 +1,25 @@
+[package]
+name = "validate-schema-with-graphql"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Validate YAML/JSON documents against GraphQL SDL schemas"
+
+[lib]
+name = "validate_schema_with_graphql"
+path = "src/lib.rs"
+
+[dependencies]
+validate-schema-with-graphql-ir = { path = "../ir" }
+validate-schema-with-graphql-parser = { path = "../sdl-parser" }
+validate-schema-with-graphql-compiler = { path = "../compiler" }
+validate-schema-with-graphql-validator = { path = "../validator" }
+validate-schema-with-graphql-diagnostics = { path = "../diagnostics" }
+tracing = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+
+[features]
+default = ["yaml"]
+yaml = ["validate-schema-with-graphql-validator/yaml"]

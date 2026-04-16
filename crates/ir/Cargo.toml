@@ -1,9 +1,9 @@
 [package]
-name = "graphql-ish-schema-validator-ir"
+name = "validate-schema-with-graphql-ir"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
-description = "JTD-like schema IR types for graphql-ish-schema-validator"
+description = "JTD-like schema IR types for validate-schema-with-graphql"
 
 [dependencies]
 serde = { workspace = true }

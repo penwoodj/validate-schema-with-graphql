@@ -1,5 +1,5 @@
 [package]
-name = "graphql-ish-schema-validator-parser"
+name = "validate-schema-with-graphql-parser"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
@@ -7,8 +7,8 @@ description = "GraphQL SDL parser using apollo-parser with CST walking"
 
 [dependencies]
 apollo-parser = { workspace = true }
-graphql-ish-schema-validator-ir = { path = "../ir" }
-graphql-ish-schema-validator-diagnostics = { path = "../diagnostics" }
+validate-schema-with-graphql-ir = { path = "../ir" }
+validate-schema-with-graphql-diagnostics = { path = "../diagnostics" }
 thiserror = { workspace = true }
 
 [dev-dependencies]

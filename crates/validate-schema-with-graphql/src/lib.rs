@@ -1,15 +1,15 @@
-pub use graphql_ish_schema_validator_diagnostics::{
+pub use validate_schema_with_graphql_diagnostics::{
     ErrorCode, LoweringError, SdlError, ValidationError, ValidationMode, ValidationResult,
 };
-pub use graphql_ish_schema_validator_ir::{
+pub use validate_schema_with_graphql_ir::{
     AdditionalPolicy, JsonPointer, ScalarKind, Schema, SchemaBundle,
 };
 
-use graphql_ish_schema_validator_compiler as compiler;
-use graphql_ish_schema_validator_parser as parser;
-use graphql_ish_schema_validator_validator as validator;
 use std::panic::{catch_unwind, AssertUnwindSafe};
 use tracing::{debug, info, instrument, warn};
+use validate_schema_with_graphql_compiler as compiler;
+use validate_schema_with_graphql_parser as parser;
+use validate_schema_with_graphql_validator as validator;
 
 /// Options for validation.
 #[derive(Debug, Clone)]

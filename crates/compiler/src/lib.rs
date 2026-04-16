@@ -1,15 +1,15 @@
 //! graphql-ish-schema-validator-compiler: SDL AST to IR lowering compiler
 
-use graphql_ish_schema_validator_diagnostics::LoweringError;
-use graphql_ish_schema_validator_ir::{
+use indexmap::IndexMap;
+use std::collections::HashSet;
+use validate_schema_with_graphql_diagnostics::LoweringError;
+use validate_schema_with_graphql_ir::{
     AdditionalPolicy, OneOfVariant, ScalarConstraints, ScalarKind, Schema, SchemaBundle,
 };
-use graphql_ish_schema_validator_parser::{
+use validate_schema_with_graphql_parser::{
     DirectiveInfo, EnumTypeInfo, InputFieldInfo, InputTypeInfo, ScalarTypeInfo, SdlAst,
     UnionTypeInfo,
 };
-use indexmap::IndexMap;
-use std::collections::HashSet;
 
 /// Compile an SDL AST into a SchemaBundle (IR).
 pub fn compile(ast: &SdlAst) -> Result<SchemaBundle, Vec<LoweringError>> {
@@ -428,7 +428,7 @@ fn apply_range_to_schema(
 #[cfg(test)]
 mod tests {
     use super::*;
-    use graphql_ish_schema_validator_parser::extract_ast;
+    use validate_schema_with_graphql_parser::extract_ast;
 
     fn compile_sdl(sdl: &str) -> Result<SchemaBundle, Vec<LoweringError>> {
         let ast = extract_ast(sdl).map_err(|_| {

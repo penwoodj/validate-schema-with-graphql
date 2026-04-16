@@ -1,10 +1,10 @@
 use clap::{Parser, Subcommand};
-use graphql_ish_schema_validator::{
+use std::path::PathBuf;
+use tracing_subscriber::EnvFilter;
+use validate_schema_with_graphql::{
     validate_json_from_schema, validate_yaml_from_schema, LogLevel, ValidationMode,
     ValidationOptions,
 };
-use std::path::PathBuf;
-use tracing_subscriber::EnvFilter;
 
 #[derive(Parser)]
 #[command(
@@ -202,10 +202,10 @@ fn run_compile(schema_path: &PathBuf) -> miette::Result<()> {
     let sdl_content = std::fs::read_to_string(schema_path)
         .map_err(|e| miette::miette!("failed to read schema: {e}"))?;
 
-    let ast = graphql_ish_schema_validator_parser::extract_ast(&sdl_content)
+    let ast = validate_schema_with_graphql_parser::extract_ast(&sdl_content)
         .map_err(|errs| miette::miette!("SDL parse errors: {:?}", errs))?;
 
-    let bundle = graphql_ish_schema_validator_compiler::compile(&ast)
+    let bundle = validate_schema_with_graphql_compiler::compile(&ast)
         .map_err(|errs| miette::miette!("compile errors: {:?}", errs))?;
 
     let json = serde_json::to_string_pretty(&bundle)

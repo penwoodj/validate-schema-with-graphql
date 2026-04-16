@@ -1,13 +1,13 @@
 #[cfg(test)]
-use graphql_ish_schema_validator_compiler::compile;
+use validate_schema_with_graphql_compiler::compile;
 #[cfg(test)]
-use graphql_ish_schema_validator_diagnostics::ValidationMode;
+use validate_schema_with_graphql_diagnostics::ValidationMode;
 #[cfg(test)]
-use graphql_ish_schema_validator_ir::SchemaBundle;
+use validate_schema_with_graphql_ir::SchemaBundle;
 #[cfg(test)]
-use graphql_ish_schema_validator_parser::extract_ast;
+use validate_schema_with_graphql_parser::extract_ast;
 #[cfg(test)]
-use graphql_ish_schema_validator_validator::{parse_json, parse_yaml_with_mode, Validator};
+use validate_schema_with_graphql_validator::{parse_json, parse_yaml_with_mode, Validator};
 
 #[cfg(test)]
 fn workspace_root() -> &'static str {
@@ -56,7 +56,7 @@ fn end_to_end_invalid_yaml() {
 
     let codes: Vec<_> = result.errors.iter().map(|e| e.code).collect();
     assert!(
-        codes.contains(&graphql_ish_schema_validator_diagnostics::ErrorCode::UnknownProperty),
+        codes.contains(&validate_schema_with_graphql_diagnostics::ErrorCode::UnknownProperty),
         "expected UnknownProperty error, got: {:?}",
         codes
     );
@@ -100,7 +100,7 @@ fn end_to_end_missing_required_field() {
         .errors
         .iter()
         .any(|e| e.code
-            == graphql_ish_schema_validator_diagnostics::ErrorCode::RequiredPropertyMissing));
+            == validate_schema_with_graphql_diagnostics::ErrorCode::RequiredPropertyMissing));
 }
 
 #[test]
@@ -143,7 +143,7 @@ fn end_to_end_nested_enum_validation() {
     assert!(result
         .errors
         .iter()
-        .any(|e| e.code == graphql_ish_schema_validator_diagnostics::ErrorCode::InvalidEnumValue));
+        .any(|e| e.code == validate_schema_with_graphql_diagnostics::ErrorCode::InvalidEnumValue));
 }
 
 #[test]

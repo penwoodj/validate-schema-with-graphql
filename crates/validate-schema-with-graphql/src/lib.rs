@@ -5,6 +5,10 @@ pub use validate_schema_with_graphql_ir::{
     AdditionalPolicy, JsonPointer, ScalarKind, Schema, SchemaBundle,
 };
 
+pub use voyager::to_voyager_schema;
+
+pub mod voyager;
+
 use std::panic::{catch_unwind, AssertUnwindSafe};
 use tracing::{debug, info, instrument, warn};
 use validate_schema_with_graphql_compiler as compiler;
